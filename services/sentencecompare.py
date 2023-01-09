@@ -7,7 +7,7 @@ from sentence_transformers import SentenceTransformer, util
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
-class Comparison:
+class Sentencecomparison:
     def __init__(self):
         self.tryToMark: int = 0
    
