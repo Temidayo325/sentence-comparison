@@ -17,5 +17,5 @@ class Sentencecomparison:
         cosine_scores = util.cos_sim(scheme_embedding, answer_embedding)
         for index in cosine_scores:
             for value in index:
-                self.tryToMark = float(value) * sentence.mark
+                self.tryToMark += float(value) * sentence.mark
         return {"scheme": sentence.scheme, "answer": sentence.answer, "score": self.tryToMark}

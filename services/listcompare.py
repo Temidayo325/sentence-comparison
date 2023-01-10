@@ -23,6 +23,7 @@ class Listcomparison:
         values: list = []
         for answer in cosine_scores:
             values.append(max(answer))
+        print(max(values))
         for final in destring_answer:
             self.final_values = float(max(values) * int(listType.mark))
             values.remove(max(values))
