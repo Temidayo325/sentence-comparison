@@ -7,6 +7,7 @@ from sentence_transformers import SentenceTransformer, util
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
+
 class Sentencecomparison:
     def __init__(self):
         self.tryToMark: int = 0
@@ -17,5 +18,5 @@ class Sentencecomparison:
         cosine_scores = util.cos_sim(scheme_embedding, answer_embedding)
         for index in cosine_scores:
             for value in index:
-                self.tryToMark += float(value) * sentence.mark
+                self.tryToMark += round(float(value) * sentence.mark, 1)
         return {"scheme": sentence.scheme, "answer": sentence.answer, "score": self.tryToMark}
