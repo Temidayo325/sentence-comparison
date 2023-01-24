@@ -21,8 +21,8 @@ class Listcomparison:
         answer_embedding = model.encode(destring_answer, convert_to_tensor=True)
         cosine_scores = util.cos_sim(scheme_embedding, answer_embedding)
         values: list = []
-        for answer in cosine_scores:
-            values.append(max(answer))
+
+        values = [max(answer) for answer in cosine_scores]
         for final in destring_answer:
             self.final_values += round(float(max(values) * int(listType.mark)), 1)
             values.remove(max(values))
