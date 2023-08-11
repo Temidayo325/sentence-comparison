@@ -1,18 +1,20 @@
-FROM python:3.9
+# Use the official Python base image
+FROM python:3.9-slim
 
-WORKDIR /code
+# Set the working directory in the container
+WORKDIR /app
 
-COPY requirements.txt /code/requirements.txt
-# Fixed the path of the requirements.txt file
+# Copy the requirements file into the container
+COPY requirements.txt .
 
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
-# Updated the path of the requirements.txt file
+# Install the dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY comparisonApi /code/comparisonApi
-# Removed the dot (.) from the source path
+# Copy the entire application directory into the container
+COPY . .
 
-WORKDIR /code/comparisonApi/router
-# Changed the working directory to /code/comparisonApi/router
+# Expose the port that the FastAPI application will run on
+EXPOSE 5000
 
-CMD ["python", "main.py"]
-# Using the correct Python file to run
+# Run the FastAPI application using uvicorn
+CMD ["uvicorn", "router.main:app", "--host", "0.0.0.0", "--port", "5000"]
